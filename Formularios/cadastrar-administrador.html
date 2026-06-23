@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="pt-br">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Cadastro de Administrador</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+  </head>
+  <body>
+    
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-4">
+                <div class="card shadow m-3">
+                    <div class="card-body">
+                        <div class="form-group mb-2">
+                            <label for="nome" class="form-label">Nome</label>
+                            <input type="text" class="form-control" id="nome" required>
+                        </div>
+                        <div class="form-group mb-2">
+                            <label for="cpf" class="form-label">CPF</label>
+                            <input type="text" class="form-control" id="cpf" required>
+                        </div>
+                        <div class="form-group mb-2">
+                            <label for="email" class="form-label">E-mail</label>
+                            <input type="email" class="form-control" id="email" required>
+                        </div>
+                        <div class="form-group mb-2">
+                            <label for="telefone" class="form-label">Telefone</label>
+                            <input type="text" class="form-control" id="telefone" required>
+                        </div>
+                        <div class="form-group mb-2">
+                            <label for="usuario" class="form-label">Usuário</label>
+                            <input type="text" class="form-control" id="usuario" required>
+                        </div>
+                        <div class="form-group mb-2">
+                            <label for="senha" class="form-label">Senha</label>
+                            <input type="password" class="form-control" id="senha" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="status" class="form-label">Status</label>
+                            <select class="form-select" id="status" required>
+                                <option value="1">Ativo</option>
+                                <option value="0">Inativo</option>
+                            </select>
+                        </div>
+                        <button class="btn btn-primary mt-3" id="btn-cadastrar">Cadastrar Administrador</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('btn-cadastrar').addEventListener('click', function() {
+            const nome = document.getElementById('nome').value;
+            const cpf = document.getElementById('cpf').value;
+            const email = document.getElementById('email').value;
+            const telefone = document.getElementById('telefone').value;
+            const usuario = document.getElementById('usuario').value;
+            const senha = document.getElementById('senha').value;
+            const status = document.getElementById('status').value;
+
+            fetch('http://127.0.0.1:8000/api/administrador/add', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ nome, cpf, email, telefone, usuario, senha, status })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.errors) {
+                    console.log('Erros:', data.errors);
+                    alert('Erro de validação.');
+                } else {
+                    console.log('Administrador cadastrado:', data);
+                    alert('Administrador cadastrado com sucesso!');
+                }
+            })
+            .catch(errors => console.log('Erro:', errors));
+        });
+    </script>
+  </body>
+</html>
