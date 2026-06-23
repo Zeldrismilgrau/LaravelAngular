@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="pt-br">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Cadastro de Curso</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+  </head>
+  <body>
+    
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-3">
+                <div class="card shadow m-3">
+                    <div class="card-body">
+                        <div class="form-group mb-2">
+                            <label for="nome" class="form-label">Nome do Curso</label>
+                            <input type="text" class="form-control" id="nome" name="nome" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="periodo" class="form-label">Período</label>
+                            <input type="text" class="form-control" id="periodo" name="periodo" required>
+                        </div>
+                        <button class="btn btn-primary mt-3" id="btn-cadastrar">Cadastrar Curso</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('btn-cadastrar').addEventListener('click', function() {
+            const nome = document.getElementById('nome').value;
+            const periodo = document.getElementById('periodo').value;
+
+            fetch("{{ url('/api/curso/add') }}", {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ nome, periodo })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.errors) {
+                    console.log('Erros de validação:', data.errors);
+                    alert('Erro de validação.');
+                } else {
+                    console.log('Curso cadastrado com sucesso:', data);
+                    alert('Curso cadastrado com sucesso!');
+                }
+            })
+            .catch(errors => console.log('Erro:', errors));
+        });
+    </script>
+  </body>
+</html>

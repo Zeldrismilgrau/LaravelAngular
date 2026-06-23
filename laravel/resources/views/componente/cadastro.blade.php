@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="pt-br">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Cadastro de Componente</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+  </head>
+  <body>
+    
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-3">
+                <div class="card shadow m-3">
+                    <div class="card-body">
+                        <div class="form-group mb-2">
+                            <label for="nome" class="form-label">Nome do Componente</label>
+                            <input type="text" class="form-control" id="nome" required>
+                        </div>
+                        <div class="form-group mb-2">
+                            <label for="hora_inicio" class="form-label">Hora Início</label>
+                            <input type="time" class="form-control" id="hora_inicio" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="hora_fim" class="form-label">Hora Fim</label>
+                            <input type="time" class="form-control" id="hora_fim" required>
+                        </div>
+                        <button class="btn btn-primary mt-3" id="btn-cadastrar">Cadastrar Componente</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('btn-cadastrar').addEventListener('click', function() {
+            const nome = document.getElementById('nome').value;
+            const hora_inicio = document.getElementById('hora_inicio').value;
+            const hora_fim = document.getElementById('hora_fim').value;
+
+            fetch("{{ url('/api/componente/add') }}", {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ nome, hora_inicio, hora_fim })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.errors) {
+                    console.log('Erros:', data.errors);
+                    alert('Erro de validação.');
+                } else {
+                    console.log('Componente cadastrado:', data);
+                    alert('Componente cadastrado com sucesso!');
+                }
+            })
+            .catch(errors => console.log('Erro:', errors));
+        });
+    </script>
+  </body>
+</html>
