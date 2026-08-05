@@ -7,6 +7,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class IncrementerComponent  implements OnInit {
 
+valor = 0
+
+
+somar (){
+  ++this.valor
+}
+
+subtrair (){
+  --this.valor
+}
+
   constructor() { }
 
   ngOnInit() {}
