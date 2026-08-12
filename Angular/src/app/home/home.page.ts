@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
-import { AuthenticateService } from '../services/auth.service';
-import { CrudService } from '../services/crud.service';
+import { AuthenticateService } from '../shared/services/auth.service';
+import { CrudService } from '../shared/services/crud.service';
 import { Storage, getDownloadURL, ref, uploadBytesResumable } from '@angular/fire/storage';
-import { MessageService } from '../services/message.service';
+import { MessageService } from '../shared/services/message.service';
 import { Router } from '@angular/router';
 
 @Component({
