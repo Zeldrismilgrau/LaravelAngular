@@ -1,29 +1,50 @@
-/* To learn more about this file see: https://angular.io/config/tsconfig. */
 {
   "compileOnSave": false,
+
   "compilerOptions": {
     "baseUrl": "./",
     "outDir": "./dist/out-tsc",
-    "forceConsistentCasingInFileNames": true,
+
+    "target": "ES2024",
+    "module": "ESNext",
+    "moduleResolution": "bundler",
+
+    "lib": [
+      "ES2024",
+      "DOM",
+      "DOM.Iterable"
+    ],
+
     "strict": true,
+
     "noImplicitOverride": true,
-    "noPropertyAccessFromIndexSignature": true,
     "noImplicitReturns": true,
     "noFallthroughCasesInSwitch": true,
+    "noPropertyAccessFromIndexSignature": true,
+    "noUncheckedIndexedAccess": true,
+
+    "forceConsistentCasingInFileNames": true,
+
+    "experimentalDecorators": true,
+
+    "useDefineForClassFields": true,
+
     "sourceMap": true,
     "declaration": false,
-    "downlevelIteration": true,
-    "experimentalDecorators": true,
-    "moduleResolution": "node",
+
     "importHelpers": true,
-    "target": "es2022",
-    "module": "es2020",
-    "lib": [
-      "es2018", 
-      "dom"
-    ],
-    "useDefineForClassFields": false
+
+    "moduleDetection": "force",
+
+    "verbatimModuleSyntax": true,
+
+    "isolatedModules": true,
+
+    "resolveJsonModule": true,
+
+    "skipLibCheck": true
   },
+
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,
     "strictInjectionParameters": true,
