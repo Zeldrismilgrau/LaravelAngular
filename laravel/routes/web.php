@@ -16,6 +16,8 @@ use App\Http\Middleware\LogAcessoMiddleware;
 
 Route::get('/', [App\Http\Controllers\Principal::class, 'principal']);
 
+Route::get('/', [App\Http\Controllers\ContatoController::class, 'contato']);
+
 // --- ROTAS DE VIEW (RENDERIZAR AS TELAS BLADE) ---
 Route::view('/curso', 'curso.cadastro');
 Route::view('/professor', 'professor.cadastro');
