@@ -23,4 +23,8 @@ listarProdutos(){
   });
 }
 
+removerProduto(id:any){
+  this.crudService.delete(`produtos/${id}`)
+}
+
 }
