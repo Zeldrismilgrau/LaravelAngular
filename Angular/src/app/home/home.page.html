@@ -3,9 +3,14 @@
     <ion-button color="secondary" (click)="this.listarProdutos()">Teste</ion-button>
     
     <ng-container *ngFor="let produto of this.produtos">
-        <h1>Código: {{produto.id}}</h1>
-        <h1>Nome: {{produto.nome}}</h1>
-        <h1>Preço: {{produto.preco}}</h1>
+        <ion-item>
+            <ion-label>
+                <h1>{{produto.nome}}</h1>
+                <h3>{{produto.preco}}</h3>
+            </ion-label>
+            <ion-icon name="trash-outline" slot="start"></ion-icon>
+            <ion-icon name="create-outline" slot="start"></ion-icon>
+        </ion-item>
     </ng-container>
     
 </ion-content>
