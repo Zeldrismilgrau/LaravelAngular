@@ -19,7 +19,8 @@ produtos: any;
 
 listarProdutos(){
   this.crudService.get('produtos').subscribe(produtos => {
-    console.log(produtos)});
+    this.produtos = produtos
+  });
 }
 
 }
